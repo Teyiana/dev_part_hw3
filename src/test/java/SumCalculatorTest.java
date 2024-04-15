@@ -2,7 +2,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
- class SumCalculatorTest {
+class SumCalculatorTest {
     private SumCalculator sumCalc;
 
     @BeforeEach
@@ -10,9 +10,17 @@ import org.junit.jupiter.api.Test;
         sumCalc = new SumCalculator();
     }
 
+    @Test
+    void testThatSumWorksCorrectWith1() {
+        //When
+        int actual = sumCalc.sum(1);
+        //Then
+        int expected = 1;
+        Assertions.assertEquals(expected, actual);
+    }
 
     @Test
-     void testThatSumWorksCorrect() {
+    void testThatSumWorksCorrect() {
         //When
         int actual = sumCalc.sum(3);
         //Then
@@ -22,12 +30,7 @@ import org.junit.jupiter.api.Test;
 
     @Test
     void testThatSumWorksDoesNotCorrect() {
-        //When
-        int actual = sumCalc.sum(4);
-
-        //Then
-        int expected = 11;
-        Assertions.assertNotEquals(expected, actual);
+        Assertions.assertThrows(IllegalArgumentException.class, () -> sumCalc.sum(0));
     }
 
 }
